@@ -53,12 +53,12 @@ stdenv.mkDerivation rec {
   ''
     substituteInPlace \
       report.d/libinput \
-        --replace-fail "[ -f /usr/bin/libinput ]" "[ -f /usr/bin/libinput ] || [ -e ${pkgs.libinput}/bin/libinput ]
+        --replace-fail "[ -f /usr/bin/libinput ]" "[ -f /usr/bin/libinput ] || [ -e ${pkgs.libinput}/bin/libinput ]"
   '' +
   ''
     substituteInPlace \
-      report.d/efibootmgr \
-        --replace-fail "[ -f /usr/bin/efibootmgr ]" "[ -f /usr/bin/efibootmgr ] || [ -e ${pkgs.efibootmgr}/bin/efibootmgr ]
+      report.d/efiboot \
+        --replace-fail "[ -f /usr/bin/efibootmgr ]" "[ -f /usr/bin/efibootmgr ] || [ -e ${pkgs.efibootmgr}/bin/efibootmgr ]"
   '';
   # buildPhase = "echo echo Hello World > example";
   # installPhase = "install -Dm755 example $out";
