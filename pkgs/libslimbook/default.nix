@@ -6,8 +6,6 @@
   pkg-config,
   meson,
   ninja,
-  #glib,
-  #libintl,
 }:
 
 stdenv.mkDerivation rec {
@@ -24,9 +22,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = with pkgs; [
     gcc
-    # make
     pkg-config
-    # binutils
     meson
     ninja
   ];
@@ -36,9 +32,6 @@ stdenv.mkDerivation rec {
     usbutils
     pciutils
   ];
-
-  # buildInputs = [ glib libintl ]
-  #buildPhase = "echo Hello World";
 
   patches = [ ./flatpak.diff ./efi_and_lib.diff ];
   postPatch = ''
@@ -72,12 +65,8 @@ stdenv.mkDerivation rec {
       report.d/usb \
         --replace-fail "lsusb" "${pkgs.usbutils}/bin/lsusb"
   '';
-  # buildPhase = "echo echo Hello World > example";
-  # installPhase = "install -Dm755 example $out";
-
 
   meta = with lib; {
-    broken = false;
     description = "";
     homepage = "https://github.com/Slimbook-Team/${pname}";
     license = licenses.gpl3Plus;
