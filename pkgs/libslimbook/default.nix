@@ -40,7 +40,7 @@ stdenv.mkDerivation rec {
   # buildInputs = [ glib libintl ]
   #buildPhase = "echo Hello World";
 
-  patches = [ ./flatpak.diff ];
+  patches = [ ./flatpak.diff ./efi_and_lib.diff ];
   postPatch = ''
     substituteInPlace \
       src/slimbookctl.cpp \
@@ -55,12 +55,12 @@ stdenv.mkDerivation rec {
 + ''
     substituteInPlace \
       report.d/libinput \
-        --replace-fail "[ -f /usr/bin/libinput ]" "[ -f /usr/bin/libinput ] || [ -e ${pkgs.libinput}/bin/libinput ]"\
+        --replace-fail "libinput" "${pkgs.libinput}/bin/libinput"
   ''
 + ''
     substituteInPlace \
       report.d/efiboot \
-        --replace-fail "[ -f /usr/bin/efibootmgr ]" "[ -f /usr/bin/efibootmgr ] || [ -e ${pkgs.efibootmgr}/bin/efibootmgr ]"\
+        --replace-fail "efibootmgr" "${pkgs.efibootmgr}/bin/efibootmgr"
   ''
 + ''
     substituteInPlace \
@@ -74,6 +74,8 @@ stdenv.mkDerivation rec {
   '';
   # buildPhase = "echo echo Hello World > example";
   # installPhase = "install -Dm755 example $out";
+
+
   meta = with lib; {
     broken = false;
     description = "";
