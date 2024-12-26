@@ -33,6 +33,8 @@ stdenv.mkDerivation rec {
   buildInputs = with pkgs; [
     libinput
     efibootmgr
+    usbutils
+    pciutils
   ];
 
   # buildInputs = [ glib libintl ]
@@ -43,22 +45,32 @@ stdenv.mkDerivation rec {
     substituteInPlace \
       src/slimbookctl.cpp \
         --replace-fail "/usr/libexec" "$out/libexec"
-   '' +
-   ''
+   '' 
++  ''
     substituteInPlace \
       slimbook-settings.service \
       slimbook-sleep \
         --replace-fail "/usr/bin" "$out/bin"
-  '' + 
   ''
++ ''
     substituteInPlace \
       report.d/libinput \
-        --replace-fail "[ -f /usr/bin/libinput ]" "[ -f /usr/bin/libinput ] || [ -e ${pkgs.libinput}/bin/libinput ]"
-  '' +
+        --replace-fail "[ -f /usr/bin/libinput ]" "[ -f /usr/bin/libinput ] || [ -e ${pkgs.libinput}/bin/libinput ]"\
   ''
++ ''
     substituteInPlace \
       report.d/efiboot \
-        --replace-fail "[ -f /usr/bin/efibootmgr ]" "[ -f /usr/bin/efibootmgr ] || [ -e ${pkgs.efibootmgr}/bin/efibootmgr ]"
+        --replace-fail "[ -f /usr/bin/efibootmgr ]" "[ -f /usr/bin/efibootmgr ] || [ -e ${pkgs.efibootmgr}/bin/efibootmgr ]"\
+  ''
++ ''
+    substituteInPlace \
+      report.d/pci \
+        --replace-fail "lspci" "${pkgs.pciutils}/bin/lspci"
+  ''
++ ''
+    substituteInPlace \
+      report.d/usb \
+        --replace-fail "lsusb" "${pkgs.usbutils}/bin/lsusb"
   '';
   # buildPhase = "echo echo Hello World > example";
   # installPhase = "install -Dm755 example $out";
