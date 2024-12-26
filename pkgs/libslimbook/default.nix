@@ -34,6 +34,22 @@ stdenv.mkDerivation rec {
   # buildInputs = [ glib libintl ]
   #buildPhase = "echo Hello World";
 
+  postPatch = ''
+    substituteInPlace
+      src/slimbookctl.cpp \
+        --replace-fail "/usr/libexec" "$out/libexec"
+    substituteInPlace
+      slimbook-settings.service \
+      slimbook-sleep \
+        --replace-fail "/usr/bin" "$out/bin"
+  '';
+      # report.d/libinput \
+      # report.d/efibootmgr \
+      # report.d/flatpak \
+      # report.d/dnf \
+      # report.d/apt \
+      # report.d/apt-upgradeable \
+      # report.d/pamac \
   # buildPhase = "echo echo Hello World > example";
   # installPhase = "install -Dm755 example $out";
   meta = with lib; {
