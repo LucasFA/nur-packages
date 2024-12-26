@@ -69,7 +69,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "";
     homepage = "https://github.com/Slimbook-Team/${pname}";
-    license = licenses.gpl3Plus;
+    license = licenses.lgpl3Plus;
     platforms = platforms.linux;
   };
 }
