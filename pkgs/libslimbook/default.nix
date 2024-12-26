@@ -30,26 +30,36 @@ stdenv.mkDerivation rec {
     meson
     ninja
   ];
-  buildInputs = [ ];
+  buildInputs = with pkgs; [
+    libinput
+    efibootmgr
+  ];
+
   # buildInputs = [ glib libintl ]
   #buildPhase = "echo Hello World";
 
+  patches = [ ./flatpak.diff ];
   postPatch = ''
-    substituteInPlace
+    substituteInPlace \
       src/slimbookctl.cpp \
         --replace-fail "/usr/libexec" "$out/libexec"
-    substituteInPlace
+   '' +
+   ''
+    substituteInPlace \
       slimbook-settings.service \
       slimbook-sleep \
         --replace-fail "/usr/bin" "$out/bin"
+  '' + 
+  ''
+    substituteInPlace \
+      report.d/libinput \
+        --replace-fail "/usr/bin" "${pkgs.libinput}/bin
+  '' +
+  ''
+    substituteInPlace \
+      report.d/efibootmgr \
+        --replace-fail "/usr/bin" "${pkgs.efibootmgr}/bin
   '';
-      # report.d/libinput \
-      # report.d/efibootmgr \
-      # report.d/flatpak \
-      # report.d/dnf \
-      # report.d/apt \
-      # report.d/apt-upgradeable \
-      # report.d/pamac \
   # buildPhase = "echo echo Hello World > example";
   # installPhase = "install -Dm755 example $out";
   meta = with lib; {
