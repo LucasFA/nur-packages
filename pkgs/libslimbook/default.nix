@@ -31,6 +31,7 @@ stdenv.mkDerivation rec {
     efibootmgr
     usbutils
     pciutils
+    # qc71_slimbook_laptop
   ];
 
   patches = [ ./flatpak.diff ./efi_and_lib.diff ];

@@ -18,4 +18,8 @@ python3Packages.buildPythonApplication rec {
     pygobject3 # gi
     utils
     # slimbook # python-slimbook
-  ]);
+  ]) ++
+    [
+      libslimbook
+    ]
+;
