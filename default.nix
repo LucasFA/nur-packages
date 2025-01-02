@@ -15,8 +15,7 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   libslimbook = pkgs.callPackage ./pkgs/libslimbook { };
-  qc71_slimbook_laptop= pkgs.callPackage ./pkgs/qc71_slimbook_laptop { };
-  
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
+  python-slimbook = pkgs.callPackage ./pkgs/python-slimbook { };
+
+  # qc71_slimbook_laptop= pkgs.callPackage ./pkgs/qc71_slimbook_laptop { };
 }

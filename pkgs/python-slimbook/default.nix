@@ -4,22 +4,32 @@
   fetchFromGithub,
   python3,
   python3Packages,
+  setuptools,
   pkg-config,
   meson,
   ninja,
-  #glib,
-  #libintl,
 }:
 
-python3Packages.buildPythonApplication rec {
-  dependencies = [ python3 ] ++
-  (with python3Packages; [
-    configparser
-    pygobject3 # gi
-    utils
-    # slimbook # python-slimbook
-  ]) ++
-    [
-      libslimbook
-    ]
-;
+python3Packages.buildPythonPackage rec {
+  pname = "python-slimbook";
+  version = "0-unstable-2024-12-05";
+  pyproject = true;
+  src = fetchFromGithub {
+    owner = "Slimbook-Team";
+    repo = "python-slimbook";
+    rev = "009ee634058c2d9bcc870cff40c1552e91e101b4";
+    hash = "";
+  };
+  postPatch = ''
+    # Fix license
+  '';
+  build-system = [
+    setuptools
+    libslimbok # Does this work? Need at runtime
+    python3
+  ];
+  dependencies = [
+    setuptools
+    python3Packages.pygobject3 # gi
+  ];
+}
