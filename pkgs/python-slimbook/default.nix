@@ -32,4 +32,11 @@ python3Packages.buildPythonPackage rec {
     setuptools
     python3Packages.pygobject3 # gi
   ];
+  meta = {
+    description = "Python bindings for libslimbook";
+    homepage = "https://github.com/Slimbook-Team/python-slimbook";
+    license = lib.licenses.lgpl3Plus;
+    # maintainers = with lib.maintainers; [ lucasfa ];
+
+};
 }
