@@ -71,6 +71,7 @@ stdenv.mkDerivation rec {
     description = "";
     homepage = "https://github.com/Slimbook-Team/${pname}";
     license = licenses.lgpl3Plus;
+    mainProgram = "slimbookctl";
     platforms = platforms.linux;
   };
 }
