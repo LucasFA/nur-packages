@@ -3,9 +3,15 @@
   lib,
   pkgs,
   fetchFromGitHub,
+  gcc,
   pkg-config,
   meson,
   ninja,
+  libinputSupport ? true, libinput,
+  efibootmgrSupport ? true, efibootmgr,
+  usbutilsSupport ? true, usbutils,
+  pciutilsSupport ? true, pciutils,
+  flatpakSupport ? true, flatpak,
 }:
 
 stdenv.mkDerivation rec {
@@ -20,19 +26,20 @@ stdenv.mkDerivation rec {
   };
   enableParallelBuilding = true;
 
-  nativeBuildInputs = with pkgs; [
+  nativeBuildInputs = [
     gcc
     pkg-config
     meson
     ninja
   ];
-  buildInputs = with pkgs; [
-    libinput
-    efibootmgr
-    usbutils
-    pciutils
-    # qc71_slimbook_laptop
-  ];
+
+  buildInputs = [ ] ++
+    lib.optional libinputSupport libinput ++
+    lib.optional efibootmgrSupport efibootmgr ++
+    lib.optional usbutilsSupport usbutils ++
+    lib.optional pciutilsSupport pciutils ++
+    lib.optional flatpakSupport flatpak
+    # lib.optional qc71_slimbook_laptopSupport qc71_slimbook_laptop
 
   patches = [ ./flatpak.diff ./efi_and_lib.diff ];
   postPatch = ''
