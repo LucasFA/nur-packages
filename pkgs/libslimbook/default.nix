@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
     lib.optional efibootmgrSupport efibootmgr ++
     lib.optional usbutilsSupport usbutils ++
     lib.optional pciutilsSupport pciutils ++
-    lib.optional flatpakSupport flatpak
+    lib.optional flatpakSupport flatpak;
     # lib.optional qc71_slimbook_laptopSupport qc71_slimbook_laptop
 
   patches = [ ./flatpak.diff ./efi_and_lib.diff ];
