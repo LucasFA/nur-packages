@@ -4,7 +4,6 @@
   fetchFromGithub,
   python3,
   python3Packages,
-  setuptools,
   pkg-config,
   meson,
   ninja,
@@ -24,19 +23,19 @@ python3Packages.buildPythonPackage rec {
     # Fix license
   '';
   build-system = [
-    setuptools
-    libslimbok # Does this work? Need at runtime
+    python3Packages.setuptools
+    # libslimbok # Does this work? Need at runtime
     python3
   ];
   dependencies = [
-    setuptools
+    # setuptools
     python3Packages.pygobject3 # gi
   ];
   meta = {
+    broken = true;
     description = "Python bindings for libslimbook";
     homepage = "https://github.com/Slimbook-Team/python-slimbook";
     license = lib.licenses.lgpl3Plus;
     # maintainers = with lib.maintainers; [ lucasfa ];
-
-};
+  };
 }
