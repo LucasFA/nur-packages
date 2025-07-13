@@ -7,7 +7,7 @@
   pkg-config,
   meson,
   ninja,
-  libslimbook,
+  # libslimbook,
 }:
 
 python3Packages.buildPythonPackage rec {
@@ -25,7 +25,7 @@ python3Packages.buildPythonPackage rec {
   '';
   build-system = [
     python3Packages.setuptools
-    libslimbook # Does this work? Need at runtime
+    # libslimbook # Does this work? Need at runtime
     python3
   ];
   dependencies = [
