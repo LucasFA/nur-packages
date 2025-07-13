@@ -1,7 +1,7 @@
 {
   stdenv,
   lib,
-  fetchFromGithub,
+  fetchFromGitHub,
   python3,
   python3Packages,
   pkg-config,
@@ -13,11 +13,11 @@ python3Packages.buildPythonPackage rec {
   pname = "python-slimbook";
   version = "0-unstable-2024-12-05";
   pyproject = true;
-  src = fetchFromGithub {
+  src = fetchFromGitHub {
     owner = "Slimbook-Team";
     repo = "python-slimbook";
     rev = "009ee634058c2d9bcc870cff40c1552e91e101b4";
-    hash = "";
+    hash = "sha256-P4tBK6DCLw3c9zd8AW0nvG/cdDAbmpUJ7STbp3E/b54=";
   };
   postPatch = ''
     # Fix license
@@ -36,6 +36,6 @@ python3Packages.buildPythonPackage rec {
     description = "Python bindings for libslimbook";
     homepage = "https://github.com/Slimbook-Team/python-slimbook";
     license = lib.licenses.lgpl3Plus;
-    # maintainers = with lib.maintainers; [ lucasfa ];
+    maintainers = with lib.maintainers; [ lucasfa ];
   };
 }
