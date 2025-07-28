@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
     description = "Linux driver for QC71 laptop, with Slimbook patches";
     homepage = "https://github.com/Slimbook-Team/qc71_laptop/";
     license = licenses.gpl2Only;
-    maintainers = with maintainers; [ lucasfa ];
+    # maintainers = with maintainers; [ lucasfa ];
     platforms = platforms.linux;
   };
 }

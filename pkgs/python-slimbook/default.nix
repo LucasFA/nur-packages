@@ -41,6 +41,6 @@ python3Packages.buildPythonPackage rec {
     description = "Python bindings for libslimbook";
     homepage = "https://github.com/Slimbook-Team/python-slimbook";
     license = lib.licenses.lgpl3Plus;
-    maintainers = with lib.maintainers; [ lucasfa ];
+    # maintainers = with lib.maintainers; [ lucasfa ];
   };
 }
