@@ -7,7 +7,7 @@
   pkg-config,
   meson,
   ninja,
-  # libslimbook,
+  libslimbook,
 }:
 
 python3Packages.buildPythonPackage rec {
@@ -26,14 +26,18 @@ python3Packages.buildPythonPackage rec {
   build-system = [
     python3Packages.setuptools
     # libslimbook # Does this work? Need at runtime
-    python3
+    # python3
   ];
-  dependencies = [
-    # setuptools
-    python3Packages.pygobject3 # gi
+  nativeBuildInputs = with python3Packages; [
+    setuptools
   ];
+  propagatedBuildInputs = [
+    python3Packages.pygobject3
+    libslimbook
+  ];
+
   meta = {
-    broken = true;
+    # broken = true;
     description = "Python bindings for libslimbook";
     homepage = "https://github.com/Slimbook-Team/python-slimbook";
     license = lib.licenses.lgpl3Plus;

@@ -6,8 +6,13 @@
 # commands such as:
 #     nix-build -A mypackage
 
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
+let
+  libslimbook = pkgs.callPackage ./pkgs/libslimbook { };
+in
 {
   # The `lib`, `modules`, and `overlays` names are special
   lib = import ./lib { inherit pkgs; }; # functions
@@ -15,10 +20,10 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   autotorrent2 = pkgs.callPackage ./pkgs/autotorrent2 { };
-  libslimbook = pkgs.callPackage ./pkgs/libslimbook { };
-  python-slimbook = pkgs.callPackage ./pkgs/python-slimbook { };
+  libslimbook = libslimbook;
+  python-slimbook = pkgs.callPackage ./pkgs/python-slimbook { inherit libslimbook; };
   #qc71_slimbook_laptop = pkgs.callPackage ./pkgs/qc71_slimbook_laptop.nix {
-    # Make sure the module targets the same kernel as your system is using.
-    # kernel = config.boot.kernelPackages.kernel;
+  # Make sure the module targets the same kernel as your system is using.
+  # kernel = config.boot.kernelPackages.kernel;
   #};
 }
