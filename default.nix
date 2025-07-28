@@ -20,6 +20,7 @@ in
   overlays = import ./overlays; # nixpkgs overlays
 
   autotorrent2 = pkgs.callPackage ./pkgs/autotorrent2 { };
+
   libslimbook = libslimbook;
   python-slimbook = pkgs.callPackage ./pkgs/python-slimbook { inherit libslimbook; };
   #qc71_slimbook_laptop = pkgs.callPackage ./pkgs/qc71_slimbook_laptop.nix {
