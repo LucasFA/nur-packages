@@ -41,6 +41,10 @@ substituteInPlace \
     python3Packages.pygobject3
     libslimbook
   ];
+  postInstall = ''
+    find $out -name "__pycache__" -type d | xargs rm -rv
+'';
+
 
   meta = {
     # broken = true;
