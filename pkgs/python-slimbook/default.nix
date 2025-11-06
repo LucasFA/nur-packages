@@ -21,7 +21,13 @@ python3Packages.buildPythonPackage rec {
     hash = "sha256-P4tBK6DCLw3c9zd8AW0nvG/cdDAbmpUJ7STbp3E/b54=";
   };
   postPatch = ''
-    # Fix license
+substituteInPlace \
+  slimbook/info/__init__.py \
+  slimbook/config/__init__.py \
+  slimbook/kbd/__init__.py \
+  slimbook/smbios/__init__.py \
+  slimbook/qc71/__init__.py \
+    --replace-fail '_libslimbook = ctypes.CDLL("libslimbook.so.1")' '_libslimbook = ctypes.CDLL("${libslimbook}/lib/slimbook.so.1")'
   '';
   build-system = [
     python3Packages.setuptools
