@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Slimbook-Team";
     repo = pname;
-    rev = "${version}";
+    rev = "refs/tags/${version}";
     sha256 = "sha256-mGEGFrdu2DXQ8fykOQrY/AhInbY1+2L8CvWFICm5Lkg=";
   };
   enableParallelBuilding = true;
