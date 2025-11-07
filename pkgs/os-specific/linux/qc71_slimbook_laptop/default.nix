@@ -3,6 +3,7 @@
   stdenv,
   fetchFromGitHub,
   kernel,
+  kernelModuleMakeFlags,
   nix-update-script,
 }:
 
@@ -19,7 +20,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = kernel.moduleBuildDependencies;
 
-  makeFlags = kernel.makeFlags ++ [
+  makeFlags = kernelModuleMakeFlags ++ [
     "VERSION=${version}"
     "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
   ];
@@ -39,7 +40,7 @@ stdenv.mkDerivation rec {
     description = "Linux driver for QC71 laptop, with Slimbook patches";
     homepage = "https://github.com/Slimbook-Team/qc71_laptop/";
     license = licenses.gpl2Only;
-    # maintainers = with maintainers; [ lucasfa ];
+    maintainers = with maintainers; [ lucasfa ];
     platforms = platforms.linux;
   };
 }
