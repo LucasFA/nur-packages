@@ -83,11 +83,11 @@ stdenv.mkDerivation rec {
         --replace-fail "lsusb" "${pkgs.usbutils}/bin/lsusb"
   '';
 
-  meta = with lib; {
+  meta = {
     description = "";
     homepage = "https://github.com/Slimbook-Team/${pname}";
-    license = licenses.lgpl3Plus;
+    license = lib.licenses.lgpl3Plus;
     mainProgram = "slimbookctl";
-    platforms = platforms.linux;
+    platforms = lib.platforms.linux;
   };
 }
