@@ -17,7 +17,7 @@ python3Packages.buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "Slimbook-Team";
     repo = pname;
-    rev = "refs/tags/${version}";
+    tag = version;
     hash = "sha256-J2bk2kDuhhRrwnhyTcA0jkCU8VcEfw5njL7FlNBOij4=";
   };
 

@@ -2,7 +2,7 @@
   stdenv,
   lib,
   pkgs,
-  fetchFromGitHub,
+ fetchFromGitHub,
   gcc,
   pkg-config,
   meson,
@@ -26,8 +26,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Slimbook-Team";
     repo = pname;
-    rev = "refs/tags/${version}";
-    sha256 = "sha256-mGEGFrdu2DXQ8fykOQrY/AhInbY1+2L8CvWFICm5Lkg=";
+    tag = version;
+    hash = "sha256-mGEGFrdu2DXQ8fykOQrY/AhInbY1+2L8CvWFICm5Lkg=";
   };
   enableParallelBuilding = true;
 
