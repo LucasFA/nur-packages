@@ -7,14 +7,6 @@
   nix-update-script,
 }:
 
-let
-    linuxKernel = prev.linuxKernel // {
-      packagesFor = kernel:
-	(prev.linuxKernel.packagesFor kernel).extend (
-          final': prev': {
-            qc71_laptop = final'.callPackage ../
-    }
-in
 stdenv.mkDerivation rec {
   pname = "qc71_slimbook_laptop";
   version = "0-unstable-2024-12-18";
@@ -44,7 +36,6 @@ stdenv.mkDerivation rec {
   };
 
   meta = with lib; {
-    broken = true;
     description = "Linux driver for QC71 laptop, with Slimbook patches";
     homepage = "https://github.com/Slimbook-Team/qc71_laptop/";
     license = licenses.gpl2Only;
